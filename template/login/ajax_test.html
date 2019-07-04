@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax登录</title>
+
+    {#    引用静态jquery，一定要记得在setting文件中配置静态文件的路径#}
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            // 绑定btnAjax的click事件
+            $('#btnAjax').click(function () {
+                $.ajax({
+                    'url': '/ajax_handler',
+                    'type': 'get',
+                    'datatype': 'json'
+                }).success(function (data) {
+                    if (data.res == 1) {
+                        $('#msg').show().html("提示信息")
+                    }
+                })
+            })
+
+        })
+
+
+    </script>
+
+    <style>
+        #msg {
+            display: none;
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+<input type="button" value="ajax" id="btnAjax">
+<br/>
+<div id="msg">message</div>
+</body>
+</html>

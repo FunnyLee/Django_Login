@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            $('#confirm').click(function () {
+                pwd = $('#pwd').val();
+
+                $.ajax({
+                    "url": "/handler_change_pwd",
+                    "type": "post",
+                    "datatype": "json",
+                    "data": {"pwd": pwd},
+                }).success(function (data) {
+                    //修改密码成功：{'res':'1'}
+                    //修改密码失败：{'res':'0'}
+                    if(data.res == 1){
+                        alert("修改密码成功")
+                    }else {
+                        alert("修改密码失败")
+                    }
+                })
+            })
+        })
+
+    </script>
+
+</head>
+<body>
+
+<div style="display: block">
+    请输入新密码：<input type="text" id="pwd">
+</div>
+
+<div><input type="button" name="confirm" id="confirm" value="确认"></div>
+
+
+</body>
+</html>
